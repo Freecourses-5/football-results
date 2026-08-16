@@ -1,11 +1,80 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>كورة لايف - نتائج مباريات كرة القدم</title><link rel="stylesheet" href="./style.css"></head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="نتائج مباريات كرة القدم اليوم ومباريات مباشرة وترتيب البطولات." />
+  <title>كورة لايف | نتائج مباريات كرة القدم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
 <body>
-<header class="topbar"><a class="brand" href="./">⚽ كورة لايف</a><nav><a href="./">الرئيسية</a><a href="#matches">المباريات</a><a href="#leagues">البطولات</a></nav><button id="themeBtn" class="theme-btn">☾</button></header>
-<main class="container">
-<section class="hero"><p class="eyebrow">FOOTBALL SCORES</p><h1>نتائج مباريات كرة القدم</h1><p>تابع مباريات اليوم والنتائج المباشرة من مصدر بيانات رياضي موثوق.</p></section>
-<section class="controls"><div><label>التاريخ</label><div class="date-row"><button id="prevDay">‹</button><input id="date" type="date"><button id="nextDay">›</button><button id="todayBtn">اليوم</button></div></div><div><label>الحالة</label><select id="status"><option value="all">الكل</option><option value="live">🔴 مباشر</option><option value="scheduled">لم تبدأ</option><option value="finished">انتهت</option></select></div></section>
-<section id="matches" class="matches-section"><div class="section-title"><h2>مباريات اليوم</h2><button id="refreshBtn" class="refresh">تحديث</button></div><div id="state" class="state">جاري تحميل المباريات...</div><div id="matchesList" class="matches-list"></div></section>
-</main><footer>كورة لايف — منصة نتائج مباريات كرة القدم</footer><script src="./app.js"></script>
-</body></html>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="brand-ball">⚽</span>
+        <span>كورة<span> لايف</span></span>
+      </a>
+      <nav>
+        <a class="active" href="/">الرئيسية</a>
+        <a href="#matches">المباريات</a>
+        <a href="#leagues">البطولات</a>
+      </nav>
+      <button id="themeBtn" class="icon-btn" aria-label="الوضع الليلي">☾</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">FOOTBALL SCORES</span>
+        <h1>نتائج مباريات كرة القدم</h1>
+        <p>تابع مباريات اليوم والنتائج المباشرة من مصدر بيانات رياضي موثوق.</p>
+      </div>
+      <div class="hero-stat">
+        <strong id="matchCount">—</strong>
+        <span>مباراة اليوم</span>
+      </div>
+    </section>
+
+    <section class="date-bar">
+      <button id="prevDay">‹</button>
+      <div>
+        <small>التاريخ</small>
+        <strong id="selectedDate">—</strong>
+      </div>
+      <button id="nextDay">›</button>
+      <button id="todayBtn" class="today-btn">اليوم</button>
+    </section>
+
+    <section id="matches" class="matches-section">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">MATCH CENTER</span>
+          <h2>مباريات اليوم</h2>
+        </div>
+        <div class="filters">
+          <button class="filter active" data-filter="all">الكل</button>
+          <button class="filter" data-filter="live">🔴 مباشر</button>
+          <button class="filter" data-filter="scheduled">لم تبدأ</button>
+          <button class="filter" data-filter="finished">انتهت</button>
+        </div>
+      </div>
+
+      <div id="state" class="state">جاري تحميل المباريات...</div>
+      <div id="matchesGrid" class="matches-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>كورة لايف</strong>
+      <span>منصة نتائج مباريات كرة القدم</span>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
