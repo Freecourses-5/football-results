@@ -15,9 +15,14 @@
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="/">
-        <span class="brand-ball">⚽</span>
-        <span data-i18n="brand">كورة لايف</span>
+        <span class="brand-mark">⚽</span>
+        <span><b data-i18n="brand">كورة لايف</b><small>LIVE SCORES</small></span>
       </a>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a class="nav-link active" href="#matches">المباريات</a>
+        <a class="nav-link" href="#matches">مباشر</a>
+        <a class="nav-link" href="#matches">البطولات</a>
+      </nav>
       <div class="nav-actions">
         <button id="langBtn" class="pill-btn" type="button">
           <span data-i18n="lang_toggle">English</span>
@@ -32,18 +37,22 @@
 
   <main class="container">
     <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-copy">
         <span class="eyebrow" data-i18n="eyebrow_hero">لوحة النتائج المباشرة</span>
         <h1 data-i18n="hero_title">نتائج مباريات كرة القدم، لحظة بلحظة.</h1>
         <p data-i18n="hero_desc">تابع مباريات اليوم والنتائج المباشرة من مصدر بيانات رياضي موثوق.</p>
       </div>
-      <div class="hero-stat">
-        <strong id="matchCount">—</strong>
-        <span data-i18n="hero_stat_label">مباراة اليوم</span>
-        <div id="liveBadge" class="live-badge" hidden>
-          <span class="dot"></span>
-          <span id="liveCount">0</span>
-          <span data-i18n="live_now">مباراة مباشرة الآن</span>
+      <div class="hero-panel">
+        <div class="hero-stat">
+          <span class="stat-label" data-i18n="hero_stat_label">مباراة اليوم</span>
+          <strong id="matchCount">—</strong>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat live-stat">
+          <span class="stat-label">مباشر الآن</span>
+          <strong id="liveCountHero">0</strong>
+          <span class="live-mini"><i></i> LIVE</span>
         </div>
       </div>
     </section>
@@ -70,7 +79,7 @@
           <span class="eyebrow" data-i18n="section_eyebrow">مركز المباريات</span>
           <h2 data-i18n="section_title">مباريات اليوم</h2>
         </div>
-        <div class="filters" role="tablist">
+        <div class="filters" role="tablist" aria-label="فلترة المباريات">
           <button class="filter active" data-filter="all" data-i18n="filter_all">الكل</button>
           <button class="filter" data-filter="live" data-i18n="filter_live">مباشر</button>
           <button class="filter" data-filter="scheduled" data-i18n="filter_scheduled">لم تبدأ</button>
@@ -86,9 +95,17 @@
   <footer>
     <div class="pitch-line" aria-hidden="true"></div>
     <div class="container footer-inner">
-      <div>
-        <strong data-i18n="brand">كورة لايف</strong>
-        <span data-i18n="footer_tag">منصة نتائج مباريات كرة القدم مباشرة</span>
+      <div class="footer-brand">
+        <span class="brand-mark small">⚽</span>
+        <div>
+          <strong data-i18n="brand">كورة لايف</strong>
+          <span data-i18n="footer_tag">منصة نتائج مباريات كرة القدم مباشرة</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#matches">المباريات</a>
+        <a href="#matches">مباشر</a>
+        <a href="#matches">البطولات</a>
       </div>
       <span class="footer-source">Powered by API-Football</span>
     </div>

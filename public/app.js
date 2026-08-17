@@ -174,6 +174,9 @@ async function loadMatches() {
       liveBadge.hidden = true;
     }
 
+    const liveHero = document.getElementById("liveCountHero");
+    if (liveHero) liveHero.textContent = liveCount.toLocaleString(numLocale);
+
     render();
   } catch (e) {
     stateEl.textContent = e.message || t("state_error");
