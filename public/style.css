@@ -147,7 +147,7 @@ body {
 }
 
 /* ---------- Toolbar ---------- */
-.toolbar { margin: 20px 0; display: flex; gap: 14px; flex-wrap: wrap; }
+.toolbar { margin: 8px 0 20px; display: flex; gap: 14px; flex-wrap: wrap; }
 .date-bar {
   flex: 1 1 320px; display: flex; align-items: center; justify-content: center; gap: 14px;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 10px;
@@ -274,7 +274,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 
 /* ---------- Important matches strip ---------- */
 .top-matches-section {
-  margin: 20px 0 22px;
+  margin: 16px 0 0;
+  min-height: 0;
 }
 .top-matches-head {
   display:flex;
@@ -292,6 +293,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .important-matches {
   display:flex;
+  min-height:0;
+  height:auto;
   gap:12px;
   overflow-x:auto;
   padding:2px 2px 8px;
@@ -300,7 +303,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .important-card {
   flex:0 0 300px;
-  min-height:150px;
+  min-height:0;
+  height:auto;
   padding:14px;
   border:1px solid var(--border);
   border-radius:18px;
@@ -420,10 +424,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 
 @media (max-width:720px) {
-  .top-matches-section { margin-top:16px; }
+  .top-matches-section { margin-top:12px; margin-bottom:0; }
   .top-matches-head { align-items:flex-end; }
   .top-matches-note { font-size:10px; }
-  .important-card { flex-basis:270px; min-height:142px; }
+  .important-card { flex-basis:270px; min-height:0; }
   .important-team img,.logo-placeholder {
     width:38px !important;height:38px !important;max-width:38px !important;max-height:38px !important;
   }
