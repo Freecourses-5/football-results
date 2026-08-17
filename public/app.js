@@ -16,9 +16,6 @@ const DICT = {
     filter_live: "مباشر",
     filter_scheduled: "لم تبدأ",
     filter_finished: "انتهت",
-    important_eyebrow: "اختيارات اليوم",
-    important_title: "أهم المباريات",
-    important_badge: "مقترحة لك",
     state_loading: "جاري تحميل المباريات...",
     state_empty: "لا توجد مباريات مطابقة لهذا البحث أو الفلتر.",
     state_error: "تعذّر تحميل المباريات، حاول مرة أخرى.",
@@ -29,6 +26,8 @@ const DICT = {
     footer_tag: "منصة نتائج مباريات كرة القدم مباشرة",
     theme_toggle: "تبديل المظهر",
     lang_toggle: "English",
+    top_matches_title: "أهم المباريات",
+    top_matches_note: "مباريات مختارة لك",
     league_fallback: "بطولة",
     team_fallback: "الفريق",
   },
@@ -48,9 +47,6 @@ const DICT = {
     filter_live: "Live",
     filter_scheduled: "Upcoming",
     filter_finished: "Finished",
-    important_eyebrow: "TODAY'S PICKS",
-    important_title: "Top Matches",
-    important_badge: "Featured",
     state_loading: "Loading fixtures…",
     state_empty: "No matches for this search or filter.",
     state_error: "Couldn't load fixtures, please try again.",
@@ -61,6 +57,8 @@ const DICT = {
     footer_tag: "Live football scores platform",
     theme_toggle: "Toggle theme",
     lang_toggle: "العربية",
+    top_matches_title: "Top Matches",
+    top_matches_note: "Selected for you",
     league_fallback: "League",
     team_fallback: "Team",
   }
@@ -152,56 +150,144 @@ function statusLabel(m) {
   return formatTime(m.date);
 }
 
+
 /* ---------------- Arabic football names ---------------- */
 const TEAM_AR = {
-  "Liverpool":"ليفربول","Manchester City":"مانشستر سيتي","Manchester United":"مانشستر يونايتد","Arsenal":"أرسنال","Chelsea":"تشيلسي","Tottenham":"توتنهام","Tottenham Hotspur":"توتنهام هوتسبير","Newcastle":"نيوكاسل","Aston Villa":"أستون فيلا","West Ham":"وست هام","Everton":"إيفرتون","Brighton":"برايتون","Crystal Palace":"كريستال بالاس","Fulham":"فولهام","Wolverhampton Wanderers":"وولفرهامبتون","Wolves":"وولفرهامبتون","Nottingham Forest":"نوتنغهام فورست",
-  "Real Madrid":"ريال مدريد","Barcelona":"برشلونة","Atletico Madrid":"أتلتيكو مدريد","Atlético Madrid":"أتلتيكو مدريد","Sevilla":"إشبيلية","Valencia":"فالنسيا","Villarreal":"فياريال","Athletic Club":"أتلتيك بيلباو","Real Betis":"ريال بيتيس","Real Sociedad":"ريال سوسيداد","Girona":"جيرونا",
-  "Bayern Munich":"بايرن ميونخ","Borussia Dortmund":"بوروسيا دورتموند","Bayer Leverkusen":"باير ليفركوزن","RB Leipzig":"لايبزيغ","Eintracht Frankfurt":"آينتراخت فرانكفورت","VfB Stuttgart":"شتوتغارت",
-  "Inter":"إنتر ميلان","Inter Milan":"إنتر ميلان","AC Milan":"ميلان","Juventus":"يوفنتوس","Napoli":"نابولي","AS Roma":"روما","Lazio":"لاتسيو","Atalanta":"أتلانتا","Fiorentina":"فيورنتينا",
-  "Paris Saint Germain":"باريس سان جيرمان","Paris Saint-Germain":"باريس سان جيرمان","Marseille":"مارسيليا","Monaco":"موناكو","Lyon":"ليون","Lille":"ليل",
-  "Ajax":"أياكس","PSV Eindhoven":"آيندهوفن","Feyenoord":"فينورد","Benfica":"بنفيكا","FC Porto":"بورتو","Sporting CP":"سبورتينغ لشبونة","Galatasaray":"غلطة سراي","Fenerbahce":"فنربخشة","Fenerbahçe":"فنربخشة","Besiktas":"بشكتاش","Celtic":"سيلتيك","Rangers":"رينجرز",
-  "Al Ahly":"الأهلي","Al Ahly SC":"الأهلي","Zamalek SC":"الزمالك","Zamalek":"الزمالك","Pyramids FC":"بيراميدز","Pyramids":"بيراميدز","Al Hilal":"الهلال","Al Nassr":"النصر","Al-Ittihad":"الاتحاد","Al Ittihad":"الاتحاد","Al Ain":"العين","Al Sadd":"السد",
-  "River Plate":"ريفر بليت","Boca Juniors":"بوكا جونيورز","Flamengo":"فلامينغو","Argentinos JRS":"أرجنتينوس جونيورز","Argentinos Juniors":"أرجنتينوس جونيورز","Deportivo Pereira":"ديبورتيس بيريرا","Jaguares":"خاغواريس","Jaguares de Cordoba":"خاغواريس دي كوردوبا","Fortaleza FC":"فورتاليزا","Fortaleza CEIF":"فورتاليزا","America de Cali":"أمريكا دي كالي","América de Cali":"أمريكا دي كالي","Independiente Medellin":"إنديبندينتي ميديلين","Independiente Medellín":"إنديبندينتي ميديلين","Millonarios":"ميلوناريوس","Santa Fe":"إنديبندينتي سانتا في","Once Caldas":"أونسي كالداس","Valledupar FC":"فالدوبار","Valledupar":"فالدوبار","Bogota FC":"بوغوتا إف سي","Atlético Nacional":"أتلتيكو ناسيونال","Atletico Nacional":"أتلتيكو ناسيونال","Deportivo Cali":"ديبورتيفو كالي","Palmeiras":"بالميراس","Santos":"سانتوس","Corinthians":"كورينثيانز","Botafogo":"بوتافوغو","Fluminense":"فلومينينسي",
-  "Argentina":"الأرجنتين","Brazil":"البرازيل","Egypt":"مصر","Morocco":"المغرب","Algeria":"الجزائر","Tunisia":"تونس","Colombia":"كولومبيا","Spain":"إسبانيا","England":"إنجلترا","France":"فرنسا","Germany":"ألمانيا","Italy":"إيطاليا"
+  "Liverpool":"ليفربول","Manchester City":"مانشستر سيتي","Manchester United":"مانشستر يونايتد",
+  "Arsenal":"أرسنال","Chelsea":"تشيلسي","Tottenham":"توتنهام","Newcastle":"نيوكاسل",
+  "Aston Villa":"أستون فيلا","West Ham":"وست هام","Everton":"إيفرتون","Brighton":"برايتون",
+  "Crystal Palace":"كريستال بالاس","Fulham":"فولهام","Wolves":"وولفرهامبتون","Wolverhampton Wanderers":"وولفرهامبتون",
+  "Nottingham Forest":"نوتنغهام فورست","Leicester":"ليستر سيتي","Leeds":"ليدز يونايتد",
+  "Barcelona":"برشلونة","Real Madrid":"ريال مدريد","Atletico Madrid":"أتلتيكو مدريد",
+  "Sevilla":"إشبيلية","Valencia":"فالنسيا","Villarreal":"فياريال","Athletic Club":"أتلتيك بلباو",
+  "Real Betis":"ريال بيتيس","Real Sociedad":"ريال سوسيداد","Girona":"جيرونا",
+  "Inter":"إنتر ميلان","Inter Milan":"إنتر ميلان","AC Milan":"ميلان","Juventus":"يوفنتوس",
+  "Napoli":"نابولي","Roma":"روما","Lazio":"لاتسيو","Atalanta":"أتالانتا","Fiorentina":"فيورنتينا",
+  "Bayern Munich":"بايرن ميونخ","Borussia Dortmund":"بوروسيا دورتموند","RB Leipzig":"لايبزيغ",
+  "Bayer Leverkusen":"باير ليفركوزن","Eintracht Frankfurt":"آينتراخت فرانكفورت",
+  "Paris Saint Germain":"باريس سان جيرمان","Paris Saint-Germain":"باريس سان جيرمان",
+  "Marseille":"مارسيليا","Lyon":"ليون","Monaco":"موناكو","Lille":"ليل",
+  "Ajax":"أياكس","PSV Eindhoven":"آيندهوفن","Feyenoord":"فينورد",
+  "Porto":"بورتو","Benfica":"بنفيكا","Sporting CP":"سبورتينغ لشبونة",
+  "Galatasaray":"غلطة سراي","Fenerbahce":"فنربخشة","Besiktas":"بشكتاش",
+  "Al Ahly":"الأهلي","Al Ahly SC":"الأهلي","Zamalek SC":"الزمالك","Zamalek":"الزمالك",
+  "Pyramids FC":"بيراميدز","Pyramids":"بيراميدز","Al Masry":"المصري",
+  "River Plate":"ريفر بليت","Boca Juniors":"بوكا جونيورز","Racing Club":"راسينغ كلوب",
+  "Independiente":"إنديبندينتي","San Lorenzo":"سان لورينزو","Flamengo":"فلامنغو",
+  "Palmeiras":"بالميراس","Santos":"سانتوس","Corinthians":"كورينثيانز",
+  "Inter Miami":"إنتر ميامي","Los Angeles FC":"لوس أنجلوس إف سي","LA Galaxy":"لوس أنجلوس غالاكسي",
+  "Al Hilal":"الهلال","Al Nassr":"النصر","Al-Ittihad":"الاتحاد","Al Ittihad":"الاتحاد",
+  "Al Shabab":"الشباب","Al Ettifaq":"الاتفاق","Al Ahli Saudi":"الأهلي السعودي",
+  "Jaguares":"خاغواريس","Deportivo Pereira":"ديبورتيس بيريرا","Fortaleza FC":"فورتاليزا",
+  "America de Cali":"أمريكا دي كالي","Independiente Medellin":"إنديبندينتي ميديلين",
+  "Once Caldas":"أونسي كالداس","River Plate":"ريفر بليت","Viking":"فيكينغ","Viking FK":"فيكينغ"
 };
 
 const LEAGUE_AR = {
-  "Premier League":"الدوري الإنجليزي الممتاز","La Liga":"الدوري الإسباني","UEFA Champions League":"دوري أبطال أوروبا","UEFA Europa League":"الدوري الأوروبي","UEFA Europa Conference League":"دوري المؤتمر الأوروبي","Serie A":"الدوري الإيطالي","Bundesliga":"الدوري الألماني","Ligue 1":"الدوري الفرنسي","Eredivisie":"الدوري الهولندي","Primeira Liga":"الدوري البرتغالي","Liga Profesional Argentina":"الدوري الأرجنتيني للمحترفين","Primera A":"الدوري الكولومبي","Saudi Pro League":"الدوري السعودي للمحترفين","Egyptian Premier League":"الدوري المصري الممتاز","CAF Champions League":"دوري أبطال أفريقيا","FIFA World Cup":"كأس العالم","World Cup":"كأس العالم","Copa Libertadores":"كوبا ليبرتادوريس","Copa America":"كوبا أمريكا"
+  "Premier League":"الدوري الإنجليزي الممتاز",
+  "La Liga":"الدوري الإسباني","Serie A":"الدوري الإيطالي","Bundesliga":"الدوري الألماني",
+  "Ligue 1":"الدوري الفرنسي","UEFA Champions League":"دوري أبطال أوروبا",
+  "UEFA Europa League":"الدوري الأوروبي","UEFA Europa Conference League":"دوري المؤتمر الأوروبي",
+  "FIFA World Cup":"كأس العالم","World Cup":"كأس العالم",
+  "CAF Champions League":"دوري أبطال أفريقيا","Egyptian Premier League":"الدوري المصري الممتاز",
+  "Liga Profesional Argentina":"الدوري الأرجنتيني للمحترفين",
+  "Primera A":"الدوري الكولومبي","Saudi Pro League":"الدوري السعودي للمحترفين",
+  "Major League Soccer":"الدوري الأمريكي","Brasileirão Série A":"الدوري البرازيلي"
 };
 
-function translateName(name, map) {
-  if (!name || state.lang !== "ar") return name || "";
-  if (map[name]) return map[name];
-  const normalized = name.trim().toLowerCase();
-  const hit = Object.keys(map).find(k => k.toLowerCase() === normalized);
-  return hit ? map[hit] : name;
-}
-function teamName(name) { return translateName(name, TEAM_AR); }
-function leagueName(name) { return translateName(name, LEAGUE_AR); }
-
-// Search works with either the original API name or its Arabic equivalent.
-function searchableTeam(name) {
-  return `${name || ""} ${teamName(name)}`.toLowerCase();
+function normalizeName(name = "") {
+  return String(name).trim().toLowerCase().replace(/\\s+/g, " ");
 }
 
-const BIG_LEAGUES = {
-  "UEFA Champions League": 100, "Premier League": 95, "La Liga": 92,
-  "Serie A": 88, "Bundesliga": 88, "Ligue 1": 84, "UEFA Europa League": 82,
-  "Saudi Pro League": 75, "Liga Profesional Argentina": 70, "Primeira Liga": 68,
-  "Eredivisie": 66, "Copa Libertadores": 78, "CAF Champions League": 72
-};
-const BIG_TEAMS = new Set([
-  "Liverpool","Manchester City","Manchester United","Arsenal","Chelsea","Tottenham","Real Madrid","Barcelona","Atletico Madrid","Atlético Madrid","Bayern Munich","Borussia Dortmund","Bayer Leverkusen","Inter","Inter Milan","AC Milan","Juventus","Napoli","AS Roma","Paris Saint Germain","Paris Saint-Germain","Ajax","Benfica","FC Porto","Sporting CP","Al Ahly","Zamalek","Al Hilal","Al Nassr","Al-Ittihad","River Plate","Boca Juniors","Flamengo","Palmeiras"
-]);
+function teamName(name = "") {
+  if (state.lang !== "ar") return name || t("team_fallback");
+  return TEAM_AR[name] || TEAM_AR[Object.keys(TEAM_AR).find(k => normalizeName(k) === normalizeName(name))] || name || t("team_fallback");
+}
+
+function leagueName(name = "") {
+  if (state.lang !== "ar") return name || t("league_fallback");
+  return LEAGUE_AR[name] || LEAGUE_AR[Object.keys(LEAGUE_AR).find(k => normalizeName(k) === normalizeName(name))] || name || t("league_fallback");
+}
+
+function teamSearchText(name = "") {
+  return `${name} ${teamName(name)}`.toLowerCase();
+}
+
 function importanceScore(m) {
-  const league = BIG_LEAGUES[m.league?.name] || 0;
-  const teams = (BIG_TEAMS.has(m.home?.name) ? 28 : 0) + (BIG_TEAMS.has(m.away?.name) ? 28 : 0);
-  const live = statusType(m.status?.short) === "live" ? 45 : 0;
-  const finished = statusType(m.status?.short) === "finished" ? 5 : 0;
-  return league + teams + live + finished;
+  const league = normalizeName(m.league?.name);
+  const home = normalizeName(m.home?.name);
+  const away = normalizeName(m.away?.name);
+  const eliteLeagues = [
+    "premier league","la liga","serie a","bundesliga","ligue 1",
+    "uefa champions league","uefa europa league","uefa europa conference league",
+    "caf champions league","saudi pro league","liga profesional argentina"
+  ];
+  const bigTeams = [
+    "liverpool","manchester city","manchester united","arsenal","chelsea","tottenham",
+    "barcelona","real madrid","atletico madrid","inter","inter milan","ac milan","juventus",
+    "napoli","roma","bayern munich","borussia dortmund","paris saint germain",
+    "ajax","benfica","porto","galatasaray","al ahly","zamalek","pyramids",
+    "river plate","boca juniors","flamengo","palmeiras","al hilal","al nassr","al-ittihad","al ittihad"
+  ];
+  let score = 0;
+  if (eliteLeagues.some(x => league.includes(x))) score += 50;
+  if (bigTeams.some(x => home.includes(x) || away.includes(x))) score += 35;
+  if (bigTeams.some(x => home.includes(x)) && bigTeams.some(x => away.includes(x))) score += 25;
+  if (statusType(m.status?.short) === "live") score += 40;
+  if (m.goals?.home != null || m.goals?.away != null) score += 5;
+  return score;
 }
-function importantMatches() {
-  return [...state.matches].sort((a,b) => importanceScore(b) - importanceScore(a)).slice(0, 5);
+
+function renderImportantMatches() {
+  const el = document.getElementById("importantMatches");
+  if (!el) return;
+
+  const top = [...state.matches]
+    .sort((a, b) => importanceScore(b) - importanceScore(a))
+    .slice(0, 6);
+
+  if (!top.length) {
+    el.innerHTML = `<div class="important-empty">${esc(t("state_empty"))}</div>`;
+    return;
+  }
+
+  el.innerHTML = top.map(m => {
+    const type = statusType(m.status.short);
+    const score = m.goals.home == null && m.goals.away == null
+      ? "—"
+      : `${m.goals.home ?? 0} - ${m.goals.away ?? 0}`;
+    return `
+      <article class="important-card ${type}" data-match-id="${m.id}">
+        <div class="important-league">${esc(leagueName(m.league?.name))}</div>
+        <div class="important-teams">
+          <div class="important-team">
+            ${m.home.logo ? `<img src="${esc(m.home.logo)}" alt="" loading="lazy">` : `<span class="logo-placeholder">⚽</span>`}
+            <span>${esc(teamName(m.home.name))}</span>
+          </div>
+          <div class="important-score">
+            <strong>${score}</strong>
+            <small class="${type}">${esc(statusLabel(m))}</small>
+          </div>
+          <div class="important-team">
+            ${m.away.logo ? `<img src="${esc(m.away.logo)}" alt="" loading="lazy">` : `<span class="logo-placeholder">⚽</span>`}
+            <span>${esc(teamName(m.away.name))}</span>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  el.querySelectorAll(".important-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const match = state.matches.find(m => String(m.id) === String(card.dataset.matchId));
+      if (!match) return;
+      const details = document.querySelector(`.match[data-id="${CSS.escape(String(match.id))}"]`);
+      if (details) {
+        details.open = true;
+        details.scrollIntoView({behavior:"smooth", block:"center"});
+      }
+    });
+  });
 }
 
 /* ---------------- Data loading ---------------- */
@@ -225,16 +311,16 @@ async function loadMatches() {
 
     const liveCount = state.matches.filter(m => statusType(m.status.short) === "live").length;
     const liveBadge = document.getElementById("liveBadge");
-    if (liveCount > 0) {
-      liveBadge.hidden = false;
-      document.getElementById("liveCount").textContent = liveCount.toLocaleString(numLocale);
-    } else {
-      liveBadge.hidden = true;
+    const liveCountEl = document.getElementById("liveCount");
+    if (liveBadge && liveCountEl) {
+      liveBadge.hidden = liveCount === 0;
+      liveCountEl.textContent = liveCount.toLocaleString(numLocale);
     }
 
     const liveHero = document.getElementById("liveCountHero");
     if (liveHero) liveHero.textContent = liveCount.toLocaleString(numLocale);
 
+    renderImportantMatches();
     render();
   } catch (e) {
     stateEl.textContent = e.message || t("state_error");
@@ -251,23 +337,20 @@ function render() {
     const type = statusType(m.status.short);
     const matchesFilter = state.filter === "all" || state.filter === type;
     const matchesQuery = !q ||
-      searchableTeam(m.home.name).includes(q) ||
-      searchableTeam(m.away.name).includes(q) ||
-      searchableTeam(m.home.name).includes(q) ||
-      searchableTeam(m.away.name).includes(q);
+      teamSearchText(m.home.name).includes(q) ||
+      teamSearchText(m.away.name).includes(q) ||
+      teamName(m.home.name).toLowerCase().includes(q) ||
+      teamName(m.away.name).toLowerCase().includes(q);
     return matchesFilter && matchesQuery;
   });
 
   if (!list.length) {
     grid.innerHTML = "";
-    const important = document.getElementById("importantMatches");
-    if (important) important.innerHTML = "";
     stateEl.textContent = t("state_empty");
     stateEl.style.display = "block";
     return;
   }
   stateEl.style.display = "none";
-  renderImportantMatches(list);
 
   const groups = new Map();
   for (const m of list) {
@@ -290,8 +373,8 @@ function render() {
         <div class="league-head">
           ${league.logo ? `<img src="${esc(league.logo)}" alt="" loading="lazy">` : ""}
           <div class="league-names">
-            <strong>${esc(leagueName(league.name || t("league_fallback")))}</strong>
-            <small>${esc(translateName(league.country || "", TEAM_AR))}</small>
+            <strong>${esc(leagueName(league.name))}</strong>
+            <small>${esc(league.country || "")}</small>
           </div>
           <button class="fav-btn ${isFav ? "active" : ""}" data-league="${league.id}" aria-label="favorite">★</button>
         </div>
@@ -311,37 +394,6 @@ function render() {
   });
 }
 
-function renderImportantMatches(list) {
-  const box = document.getElementById("importantMatches");
-  if (!box) return;
-  const ranked = [...list].sort((a,b) => importanceScore(b) - importanceScore(a)).slice(0, 5);
-  if (!ranked.length || importanceScore(ranked[0]) < 55) {
-    box.innerHTML = "";
-    return;
-  }
-  box.innerHTML = `
-    <div class="important-head">
-      <div><span class="eyebrow dark-eyebrow">${t("important_eyebrow")}</span><h2>${t("important_title")}</h2></div>
-      <span class="important-badge">★ ${t("important_badge")}</span>
-    </div>
-    <div class="important-grid">${ranked.map(importantRow).join("")}</div>
-  `;
-}
-function importantRow(m) {
-  const type = statusType(m.status.short);
-  const homeLogo = m.home.logo ? `<img src="${esc(m.home.logo)}" alt="" loading="lazy">` : "";
-  const awayLogo = m.away.logo ? `<img src="${esc(m.away.logo)}" alt="" loading="lazy">` : "";
-  const score = m.goals.home == null && m.goals.away == null ? "—" : `${m.goals.home ?? 0} - ${m.goals.away ?? 0}`;
-  return `<article class="important-card">
-    <div class="important-league">${esc(leagueName(m.league?.name || t("league_fallback")))}</div>
-    <div class="important-teams">
-      <div><span>${esc(teamName(m.home.name || t("team_fallback")))}</span>${homeLogo}</div>
-      <div class="important-score"><b>${score}</b><small class="status ${type}">${esc(statusLabel(m))}</small></div>
-      <div>${awayLogo}<span>${esc(teamName(m.away.name || t("team_fallback")))}</span></div>
-    </div>
-  </article>`;
-}
-
 function matchRow(m) {
   const type = statusType(m.status.short);
   const homeLogo = m.home.logo ? `<img src="${esc(m.home.logo)}" alt="" loading="lazy">` : "";
@@ -359,7 +411,7 @@ function matchRow(m) {
     <details class="match" data-id="${m.id}">
       <summary>
         <div class="side home">
-          <span class="team-name" title="${esc(m.home.name || "")}">${esc(teamName(m.home.name || t("team_fallback")))}</span>
+          <span class="team-name">${esc(teamName(m.home.name))}</span>
           ${homeLogo}
         </div>
         <div class="score-box">
@@ -368,7 +420,7 @@ function matchRow(m) {
         </div>
         <div class="side away">
           ${awayLogo}
-          <span class="team-name" title="${esc(m.away.name || "")}">${esc(teamName(m.away.name || t("team_fallback")))}</span>
+          <span class="team-name">${esc(teamName(m.away.name))}</span>
         </div>
       </summary>
       ${details.length ? `<div class="match-detail">${details.join("")}</div>` : ""}
@@ -411,6 +463,7 @@ document.getElementById("langBtn").onclick = () => {
 
 /* ---------------- Init ---------------- */
 applyLang();
+renderImportantMatches();
 loadMatches();
 
 // Gentle auto-refresh for live matches on today's view.
