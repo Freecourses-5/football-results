@@ -147,7 +147,7 @@ body {
 }
 
 /* ---------- Toolbar ---------- */
-.toolbar { margin: 8px 0 20px; display: flex; gap: 14px; flex-wrap: wrap; }
+.toolbar { margin: 20px 0; display: flex; gap: 14px; flex-wrap: wrap; }
 .date-bar {
   flex: 1 1 320px; display: flex; align-items: center; justify-content: center; gap: 14px;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 10px;
@@ -265,7 +265,36 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 @media (max-width: 720px) {
   .hero { padding: 26px; flex-direction: column; align-items: stretch; }
   .hero-stat { width: 100%; }
-  .toolbar { flex-direction: column; }
+
+  /* إصلاح المساحات العمودية الضخمة في الهاتف */
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin: 8px 0 16px;
+  }
+
+  .date-bar,
+  .search-box {
+    flex: 0 0 auto !important;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+  }
+
+  .date-bar {
+    padding: 8px;
+  }
+
+  .date-display {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .search-box {
+    padding: 0 14px;
+  }
+
   .matches-grid { grid-template-columns: 1fr; }
   .team-name { max-width: 30vw; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -274,8 +303,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 
 /* ---------- Important matches strip ---------- */
 .top-matches-section {
-  margin: 16px 0 0;
-  min-height: 0;
+  margin: 20px 0 22px;
 }
 .top-matches-head {
   display:flex;
@@ -293,8 +321,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .important-matches {
   display:flex;
-  min-height:0;
-  height:auto;
   gap:12px;
   overflow-x:auto;
   padding:2px 2px 8px;
@@ -303,8 +329,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .important-card {
   flex:0 0 300px;
-  min-height:0;
-  height:auto;
+  min-height:150px;
   padding:14px;
   border:1px solid var(--border);
   border-radius:18px;
@@ -424,15 +449,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 
 @media (max-width:720px) {
-  .top-matches-section { margin-top:12px; margin-bottom:0; }
+  .top-matches-section { margin-top:16px; }
   .top-matches-head { align-items:flex-end; }
   .top-matches-note { font-size:10px; }
-  .important-card { flex-basis:270px; min-height:0; }
+  .important-card { flex-basis:270px; min-height:142px; }
   .important-team img,.logo-placeholder {
     width:38px !important;height:38px !important;max-width:38px !important;max-height:38px !important;
   }
   .important-teams { grid-template-columns:1fr 68px 1fr; }
   .match .side img {
     width:28px !important;height:28px !important;max-width:28px !important;max-height:28px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .toolbar > .date-bar,
+  .toolbar > .search-box {
+    flex-basis: auto !important;
   }
 }
