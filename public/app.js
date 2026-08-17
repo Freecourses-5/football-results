@@ -16,6 +16,9 @@ const DICT = {
     filter_live: "مباشر",
     filter_scheduled: "لم تبدأ",
     filter_finished: "انتهت",
+    important_eyebrow: "اختيارات اليوم",
+    important_title: "أهم المباريات",
+    important_badge: "مقترحة لك",
     state_loading: "جاري تحميل المباريات...",
     state_empty: "لا توجد مباريات مطابقة لهذا البحث أو الفلتر.",
     state_error: "تعذّر تحميل المباريات، حاول مرة أخرى.",
@@ -45,6 +48,9 @@ const DICT = {
     filter_live: "Live",
     filter_scheduled: "Upcoming",
     filter_finished: "Finished",
+    important_eyebrow: "TODAY'S PICKS",
+    important_title: "Top Matches",
+    important_badge: "Featured",
     state_loading: "Loading fixtures…",
     state_empty: "No matches for this search or filter.",
     state_error: "Couldn't load fixtures, please try again.",
@@ -146,6 +152,58 @@ function statusLabel(m) {
   return formatTime(m.date);
 }
 
+/* ---------------- Arabic football names ---------------- */
+const TEAM_AR = {
+  "Liverpool":"ليفربول","Manchester City":"مانشستر سيتي","Manchester United":"مانشستر يونايتد","Arsenal":"أرسنال","Chelsea":"تشيلسي","Tottenham":"توتنهام","Tottenham Hotspur":"توتنهام هوتسبير","Newcastle":"نيوكاسل","Aston Villa":"أستون فيلا","West Ham":"وست هام","Everton":"إيفرتون","Brighton":"برايتون","Crystal Palace":"كريستال بالاس","Fulham":"فولهام","Wolverhampton Wanderers":"وولفرهامبتون","Wolves":"وولفرهامبتون","Nottingham Forest":"نوتنغهام فورست",
+  "Real Madrid":"ريال مدريد","Barcelona":"برشلونة","Atletico Madrid":"أتلتيكو مدريد","Atlético Madrid":"أتلتيكو مدريد","Sevilla":"إشبيلية","Valencia":"فالنسيا","Villarreal":"فياريال","Athletic Club":"أتلتيك بيلباو","Real Betis":"ريال بيتيس","Real Sociedad":"ريال سوسيداد","Girona":"جيرونا",
+  "Bayern Munich":"بايرن ميونخ","Borussia Dortmund":"بوروسيا دورتموند","Bayer Leverkusen":"باير ليفركوزن","RB Leipzig":"لايبزيغ","Eintracht Frankfurt":"آينتراخت فرانكفورت","VfB Stuttgart":"شتوتغارت",
+  "Inter":"إنتر ميلان","Inter Milan":"إنتر ميلان","AC Milan":"ميلان","Juventus":"يوفنتوس","Napoli":"نابولي","AS Roma":"روما","Lazio":"لاتسيو","Atalanta":"أتلانتا","Fiorentina":"فيورنتينا",
+  "Paris Saint Germain":"باريس سان جيرمان","Paris Saint-Germain":"باريس سان جيرمان","Marseille":"مارسيليا","Monaco":"موناكو","Lyon":"ليون","Lille":"ليل",
+  "Ajax":"أياكس","PSV Eindhoven":"آيندهوفن","Feyenoord":"فينورد","Benfica":"بنفيكا","FC Porto":"بورتو","Sporting CP":"سبورتينغ لشبونة","Galatasaray":"غلطة سراي","Fenerbahce":"فنربخشة","Fenerbahçe":"فنربخشة","Besiktas":"بشكتاش","Celtic":"سيلتيك","Rangers":"رينجرز",
+  "Al Ahly":"الأهلي","Al Ahly SC":"الأهلي","Zamalek SC":"الزمالك","Zamalek":"الزمالك","Pyramids FC":"بيراميدز","Pyramids":"بيراميدز","Al Hilal":"الهلال","Al Nassr":"النصر","Al-Ittihad":"الاتحاد","Al Ittihad":"الاتحاد","Al Ain":"العين","Al Sadd":"السد",
+  "River Plate":"ريفر بليت","Boca Juniors":"بوكا جونيورز","Flamengo":"فلامينغو","Argentinos JRS":"أرجنتينوس جونيورز","Argentinos Juniors":"أرجنتينوس جونيورز","Deportivo Pereira":"ديبورتيس بيريرا","Jaguares":"خاغواريس","Jaguares de Cordoba":"خاغواريس دي كوردوبا","Fortaleza FC":"فورتاليزا","Fortaleza CEIF":"فورتاليزا","America de Cali":"أمريكا دي كالي","América de Cali":"أمريكا دي كالي","Independiente Medellin":"إنديبندينتي ميديلين","Independiente Medellín":"إنديبندينتي ميديلين","Millonarios":"ميلوناريوس","Santa Fe":"إنديبندينتي سانتا في","Once Caldas":"أونسي كالداس","Valledupar FC":"فالدوبار","Valledupar":"فالدوبار","Bogota FC":"بوغوتا إف سي","Atlético Nacional":"أتلتيكو ناسيونال","Atletico Nacional":"أتلتيكو ناسيونال","Deportivo Cali":"ديبورتيفو كالي","Palmeiras":"بالميراس","Santos":"سانتوس","Corinthians":"كورينثيانز","Botafogo":"بوتافوغو","Fluminense":"فلومينينسي",
+  "Argentina":"الأرجنتين","Brazil":"البرازيل","Egypt":"مصر","Morocco":"المغرب","Algeria":"الجزائر","Tunisia":"تونس","Colombia":"كولومبيا","Spain":"إسبانيا","England":"إنجلترا","France":"فرنسا","Germany":"ألمانيا","Italy":"إيطاليا"
+};
+
+const LEAGUE_AR = {
+  "Premier League":"الدوري الإنجليزي الممتاز","La Liga":"الدوري الإسباني","UEFA Champions League":"دوري أبطال أوروبا","UEFA Europa League":"الدوري الأوروبي","UEFA Europa Conference League":"دوري المؤتمر الأوروبي","Serie A":"الدوري الإيطالي","Bundesliga":"الدوري الألماني","Ligue 1":"الدوري الفرنسي","Eredivisie":"الدوري الهولندي","Primeira Liga":"الدوري البرتغالي","Liga Profesional Argentina":"الدوري الأرجنتيني للمحترفين","Primera A":"الدوري الكولومبي","Saudi Pro League":"الدوري السعودي للمحترفين","Egyptian Premier League":"الدوري المصري الممتاز","CAF Champions League":"دوري أبطال أفريقيا","FIFA World Cup":"كأس العالم","World Cup":"كأس العالم","Copa Libertadores":"كوبا ليبرتادوريس","Copa America":"كوبا أمريكا"
+};
+
+function translateName(name, map) {
+  if (!name || state.lang !== "ar") return name || "";
+  if (map[name]) return map[name];
+  const normalized = name.trim().toLowerCase();
+  const hit = Object.keys(map).find(k => k.toLowerCase() === normalized);
+  return hit ? map[hit] : name;
+}
+function teamName(name) { return translateName(name, TEAM_AR); }
+function leagueName(name) { return translateName(name, LEAGUE_AR); }
+
+// Search works with either the original API name or its Arabic equivalent.
+function searchableTeam(name) {
+  return `${name || ""} ${teamName(name)}`.toLowerCase();
+}
+
+const BIG_LEAGUES = {
+  "UEFA Champions League": 100, "Premier League": 95, "La Liga": 92,
+  "Serie A": 88, "Bundesliga": 88, "Ligue 1": 84, "UEFA Europa League": 82,
+  "Saudi Pro League": 75, "Liga Profesional Argentina": 70, "Primeira Liga": 68,
+  "Eredivisie": 66, "Copa Libertadores": 78, "CAF Champions League": 72
+};
+const BIG_TEAMS = new Set([
+  "Liverpool","Manchester City","Manchester United","Arsenal","Chelsea","Tottenham","Real Madrid","Barcelona","Atletico Madrid","Atlético Madrid","Bayern Munich","Borussia Dortmund","Bayer Leverkusen","Inter","Inter Milan","AC Milan","Juventus","Napoli","AS Roma","Paris Saint Germain","Paris Saint-Germain","Ajax","Benfica","FC Porto","Sporting CP","Al Ahly","Zamalek","Al Hilal","Al Nassr","Al-Ittihad","River Plate","Boca Juniors","Flamengo","Palmeiras"
+]);
+function importanceScore(m) {
+  const league = BIG_LEAGUES[m.league?.name] || 0;
+  const teams = (BIG_TEAMS.has(m.home?.name) ? 28 : 0) + (BIG_TEAMS.has(m.away?.name) ? 28 : 0);
+  const live = statusType(m.status?.short) === "live" ? 45 : 0;
+  const finished = statusType(m.status?.short) === "finished" ? 5 : 0;
+  return league + teams + live + finished;
+}
+function importantMatches() {
+  return [...state.matches].sort((a,b) => importanceScore(b) - importanceScore(a)).slice(0, 5);
+}
+
 /* ---------------- Data loading ---------------- */
 async function loadMatches() {
   const stateEl = document.getElementById("state");
@@ -193,18 +251,23 @@ function render() {
     const type = statusType(m.status.short);
     const matchesFilter = state.filter === "all" || state.filter === type;
     const matchesQuery = !q ||
-      (m.home.name || "").toLowerCase().includes(q) ||
-      (m.away.name || "").toLowerCase().includes(q);
+      searchableTeam(m.home.name).includes(q) ||
+      searchableTeam(m.away.name).includes(q) ||
+      searchableTeam(m.home.name).includes(q) ||
+      searchableTeam(m.away.name).includes(q);
     return matchesFilter && matchesQuery;
   });
 
   if (!list.length) {
     grid.innerHTML = "";
+    const important = document.getElementById("importantMatches");
+    if (important) important.innerHTML = "";
     stateEl.textContent = t("state_empty");
     stateEl.style.display = "block";
     return;
   }
   stateEl.style.display = "none";
+  renderImportantMatches(list);
 
   const groups = new Map();
   for (const m of list) {
@@ -227,8 +290,8 @@ function render() {
         <div class="league-head">
           ${league.logo ? `<img src="${esc(league.logo)}" alt="" loading="lazy">` : ""}
           <div class="league-names">
-            <strong>${esc(league.name || t("league_fallback"))}</strong>
-            <small>${esc(league.country || "")}</small>
+            <strong>${esc(leagueName(league.name || t("league_fallback")))}</strong>
+            <small>${esc(translateName(league.country || "", TEAM_AR))}</small>
           </div>
           <button class="fav-btn ${isFav ? "active" : ""}" data-league="${league.id}" aria-label="favorite">★</button>
         </div>
@@ -248,6 +311,37 @@ function render() {
   });
 }
 
+function renderImportantMatches(list) {
+  const box = document.getElementById("importantMatches");
+  if (!box) return;
+  const ranked = [...list].sort((a,b) => importanceScore(b) - importanceScore(a)).slice(0, 5);
+  if (!ranked.length || importanceScore(ranked[0]) < 55) {
+    box.innerHTML = "";
+    return;
+  }
+  box.innerHTML = `
+    <div class="important-head">
+      <div><span class="eyebrow dark-eyebrow">${t("important_eyebrow")}</span><h2>${t("important_title")}</h2></div>
+      <span class="important-badge">★ ${t("important_badge")}</span>
+    </div>
+    <div class="important-grid">${ranked.map(importantRow).join("")}</div>
+  `;
+}
+function importantRow(m) {
+  const type = statusType(m.status.short);
+  const homeLogo = m.home.logo ? `<img src="${esc(m.home.logo)}" alt="" loading="lazy">` : "";
+  const awayLogo = m.away.logo ? `<img src="${esc(m.away.logo)}" alt="" loading="lazy">` : "";
+  const score = m.goals.home == null && m.goals.away == null ? "—" : `${m.goals.home ?? 0} - ${m.goals.away ?? 0}`;
+  return `<article class="important-card">
+    <div class="important-league">${esc(leagueName(m.league?.name || t("league_fallback")))}</div>
+    <div class="important-teams">
+      <div><span>${esc(teamName(m.home.name || t("team_fallback")))}</span>${homeLogo}</div>
+      <div class="important-score"><b>${score}</b><small class="status ${type}">${esc(statusLabel(m))}</small></div>
+      <div>${awayLogo}<span>${esc(teamName(m.away.name || t("team_fallback")))}</span></div>
+    </div>
+  </article>`;
+}
+
 function matchRow(m) {
   const type = statusType(m.status.short);
   const homeLogo = m.home.logo ? `<img src="${esc(m.home.logo)}" alt="" loading="lazy">` : "";
@@ -265,7 +359,7 @@ function matchRow(m) {
     <details class="match" data-id="${m.id}">
       <summary>
         <div class="side home">
-          <span class="team-name">${esc(m.home.name || t("team_fallback"))}</span>
+          <span class="team-name" title="${esc(m.home.name || "")}">${esc(teamName(m.home.name || t("team_fallback")))}</span>
           ${homeLogo}
         </div>
         <div class="score-box">
@@ -274,7 +368,7 @@ function matchRow(m) {
         </div>
         <div class="side away">
           ${awayLogo}
-          <span class="team-name">${esc(m.away.name || t("team_fallback"))}</span>
+          <span class="team-name" title="${esc(m.away.name || "")}">${esc(teamName(m.away.name || t("team_fallback")))}</span>
         </div>
       </summary>
       ${details.length ? `<div class="match-detail">${details.join("")}</div>` : ""}
